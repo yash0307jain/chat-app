@@ -16,7 +16,7 @@ const Chat = () => {
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const ENDPOINT_URL = "localhost:5000";
+  const ENDPOINT_URL = "https://yashj-chat-app.herokuapp.com/";
 
   useEffect(() => {
     const { name, room } = queryString.parse(window.location.search);
