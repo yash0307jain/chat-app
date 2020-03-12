@@ -2,7 +2,7 @@ const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
 
-const { addUser, removeUser, getUser, getUserInRoom } = require("./users");
+const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
 const PORT = process.env.PORT || 5000;
 
@@ -27,7 +27,7 @@ io.on("connection", socket => {
       .to(user.room)
       .emit("message", { user: "admin", text: `${user.name}, has joined!` });
 
-    io.on(user.room).emit("roomData", {
+    io.to(user.room).emit("roomData", {
       room: user.room,
       users: getUsersInRoom(user.room)
     });
@@ -39,21 +39,22 @@ io.on("connection", socket => {
     const user = getUser(socket.id);
 
     io.to(user.room).emit("message", { user: user.name, text: message });
-    io.to(user.room).emit("roomData", {
-      room: user.room,
-      users: getUsersInRoom(user.room)
-    });
 
     callback();
   });
 
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
+    console.log("disconnect", user);
 
     if (user) {
       io.to(user.room).emit("message", {
         user: "admin",
         text: `${user.name}, has left`
+      });
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room)
       });
     }
   });
