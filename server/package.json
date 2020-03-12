@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-  	"server": "nodemon index.js"
+    "server": "node index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

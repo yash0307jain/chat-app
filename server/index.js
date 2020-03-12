@@ -1,6 +1,7 @@
 const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
+const cors = require("cors");
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
@@ -45,7 +46,6 @@ io.on("connection", socket => {
 
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
-    console.log("disconnect", user);
 
     if (user) {
       io.to(user.room).emit("message", {
@@ -61,6 +61,7 @@ io.on("connection", socket => {
 });
 
 app.use(require("./router"));
+app.use(cors());
 
 server.listen(PORT, () => {
   console.log(`Server has started on port ${PORT}`);
