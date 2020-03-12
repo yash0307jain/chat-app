@@ -2,12 +2,10 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yash0307jain.github.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "gh-pages": "^2.2.0",
     "query-string": "^6.11.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -21,9 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
