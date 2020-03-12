@@ -58,8 +58,8 @@ io.on("connection", socket => {
   });
 });
 
-app.use(require("./router"));
 app.use(cors());
+app.use(require("./router"));
 
 server.listen(process.env.PORT || 5000, () =>
   console.log(`Server has started.`)
